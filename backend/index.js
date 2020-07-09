@@ -30,4 +30,5 @@ mongoose.connect(
 
 
 app.use("/users", require("./routes/userRoute"));
+app.use("/nodes", require("./routes/nodeRoutes"));
   

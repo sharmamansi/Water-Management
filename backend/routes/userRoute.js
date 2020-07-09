@@ -9,24 +9,24 @@ router.post("/register", async (req,res) => {
         let { email, username , password ,password2} = req.body;
        
         if(!email || !password || !password2 || !username){
-            return res.status(400).json({ msg : "Please fill all the fields"});
+            return res.status(400).send({ msg : "Please fill all the fields"});
         
         }
         if (password.length < 6)
         return res
-          .status(400)
-          .json({ msg: "The password needs to be at least 5 characters long." });
+          .status(401)
+          .send({ msg: "The password needs to be at least 5 characters long." });
       if (password !== password2)
         return res
-          .status(400)
-          .json({ msg: "Enter the same password twice for verification." });
+          .status(402)
+          .send({ msg: "Enter the same password twice for verification." });
 
 
         const exsistingUser = await User.findOne({email});
         if(exsistingUser){
             return res
-            .status(400)
-            .json({ msg: "An account with this email already exists." });
+            .status(403)
+            .send({ msg: "An account with this email already exists." });
         }
 
         
@@ -50,17 +50,17 @@ router.post("/login",async (req,res) => {
   try{
     const  { email, password } = req.body;
     if(!email || !password){
-        return res.status(400).json({msg : "All fields are required"});
+        return res.status(400).send({msg : "All fields are required"});
     }
     const getUser = await User.findOne({email});
   
     if(!getUser){
-      return res.status(400).json({ msg : "Invalid Credentials"});
+      return res.status(400).send({ msg : "Invalid Credentials"});
     }
    
     const passMatch = await bcrypt.compare(password,getUser.password);
     if(!passMatch){
-      return res.status(400).json({ msg : "Invalid Credentials"});
+      return res.status(400).send({ msg : "Invalid Credentials"});
     }
   
     const token = jwt.sign({ id: getUser._id }, process.env.JWT_SECRET);
@@ -72,21 +72,24 @@ router.post("/login",async (req,res) => {
       }
     });
   }catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).send({ error: err.message });
   }
 });
 
 router.post("/tokenIsValid", async (req, res) => {
     try {
-      const token = req.header("auth-token");
+      const token = req.header("x-auth-token");
       if (!token) return res.json(false);
-  
+    
+
       const verified = jwt.verify(token, process.env.JWT_SECRET);
       if (!verified) return res.json(false);
-  
+      
+
       const user = await User.findById(verified.id);
       if (!user) return res.json(false);
-  
+      
+
       return res.json(true);
     } catch (err) {
       res.status(500).json({ error: err.message });
