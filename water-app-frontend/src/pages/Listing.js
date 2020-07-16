@@ -1,50 +1,68 @@
+
 import React , { useState ,useEffect} from 'react';
-import Showdata from '../component/Showdata';
 import Card from '../component/Card';
-import { Redirect } from 'react-router';
+import Showdata from '../component/Showdata';
 import Axios from 'axios';
 
-export default function Listing() {
+export default function Listing(props) {
 
+    const[wantData , SetwantData] = useState();
+    const[id,SetId] = useState();
+
+    useEffect ( () => {
+    let arr = props.location.pathname.split('/');
+    SetwantData(arr.length == 3 ? true : false);
+    SetId(arr[2]);
+  //  console.log(id);
+  //  console.log(wantData);
+   
+    } ,[props]);
  
-    useEffect( () => {
-      return fun();
-    },[]);
-    const fun = async()=> {
-        const get = await Axios.get("http://localhost:5000/nodes/nodesList");
-        const propkeys = Object.keys(get.data);
-        const propvalues = Object.values(get.data)
-        console.log(propkeys);
-        console.log(propvalues);
-       for( var i=0 ; i< propkeys.length ; i++){
-        document.getElementById("ren").insertAdjacentHTML(
-        "beforebegin", 
-        `<div  class="card transparent"><div class="card-content">
-        <span class="card-title white-text">${propkeys[i]}</span>
-        <p>${propvalues[i]}</p>
-        </div>
-        <div class="card-action">
-         <a href="/listing/${propvalues[i]}">More details</a>
-       </div>
-      </div>`);    
-       }
-       
-    }
+   const [cards, setCards] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-    
+    useEffect(() => {
+      Axios
+        .get("http://localhost:5000/nodes/nodesList")
+        .then((res) => {
+          if (res.status !== 200){
+            console.log(res.msg);
+            return; }
+          setCards(res.data);
+          setLoading(false);
+        }).catch((err) => console.error(err));
+    }, []);
+     
+   
  
-
   return (
  <div className="float-container">
  
-              <div className="float-child1">
-     <Showdata />
+     <div className="float-child1">
+         {
+             wantData ? (<Showdata
+             props = {
+                 id
+             } />) : (null)
+         }
+         
     </div>
 
   
   
   <div className="float-child2">
-      <Card/>
+  {
+            loading ? (null) :(cards.map((v, i) => (
+            <Card
+            key ={i}
+              props={{
+                name: v.port_name,
+                id : v._id
+              }
+            }
+            />
+          )))}
+        
   </div>
    
    </div>

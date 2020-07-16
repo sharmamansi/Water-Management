@@ -47,54 +47,136 @@ router.post("/register", async (req,res) => {
     
 });
 
-router.put("/update/points", async (req,res) => {
- try{
-  let { _id, recievinglist } = req.body;
-  if(!_id){
-    return res.status(400).send({ msg : "Insufficien info"});
-}
-if(!recievinglist){
-  return res.status(400).send({ msg : "Insufficien info"});
-}
+router.put("/update/recievepoints", async (req, res) => {
+  try {
+    let { _id, recievinglist} = req.body;
+    if (!_id || !recievinglist) {
+      return res.status(400).send({ msg: "Insufficien info" });
+    }
 
-let getNode = await Node.findById({_id});
- 
-if(!getNode){
-  return res.status(400).json({ msg : "enter valid id to be updated"});
-}
+    let getNode = await Node.findById({ _id });
 
-    recievinglist.forEach(async (ele) => {
+    if (!getNode) {
+      return res.status(400).json({ msg: "enter valid id to be updated" });
+    }
+  
+   for (let i = 0; i < recievinglist.length; i++) {
+        const ele = recievinglist[i];
+        const y = await Node.findOne({ port_name: ele });
+        if (!y) {
+          return res.status(400).send({ msg: "enter vaild recieving node" });
+        }
+        getNode.recieving_list.push({
+          port_name: ele,
+        });
+      }
+    
+    await getNode.save();
+    res.json(getNode);
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+});
+
+router.put("/update/supplypoints", async (req, res) => {
+  try {
+    let { _id,distributionlist } = req.body;
+    if (!_id || !distributionlist) {
+      return res.status(400).send({ msg: "Insufficien info" });
+    }
+
+    let getNode = await Node.findById({ _id });
+
+    if (!getNode) {
+      return res.status(400).json({ msg: "enter valid id to be updated" });
+    }
       
-   const y = await Node.findOne({port_name : ele});
-   if(!y){
-     return res.status(400).send({ msg : "enter vaild recieving node"});
-   }
-   getNode.recieving_list.unshift({
-     port_name : ele
-   });
+  for (let i = 0; i < distributionlist.length; i++) {
+    const ele = distributionlist[i];
+    const y = await Node.findOne({ port_name: ele });
+    if (!y) {
+      return res.status(400).send({ msg: "enter vaild recieving node" });
+    }
+    getNode.distribution_list.push({
+      port_name: ele,
+    });
+  }
+  
+    await getNode.save();
+    res.json(getNode);
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+});
 
-  });
+router.put("/update/supplyobj", async (req, res) => {
+  try {
+    let { _id, port_name,quantity,month,year} = req.body;
+    if (!_id || !port_name || !quantity || !month || !year) {
+      return res.status(400).send({ msg: "Insufficien info" });
+    }
 
- await getNode.save();
-res.json(getNode);  
+    let getNodetoEdit = await Node.findById({_id});
+    let getNode = await Node.findOne({port_name});
 
- } catch (err){
-  return res.status(500).json({ error: err.message });
- }  
+    if (!getNode) {
+      return res.status(400).json({ msg: "enter valid port name to be updated" });
+    }
+
+        getNodetoEdit.supplied_item.unshift({
+        suppliedport_id : getNode._id,
+        quantity ,
+        month ,
+        year
+        }); 
+
+    await getNodetoEdit.save();
+    res.json(getNodetoEdit);
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+});
+
+router.put("/update/recievedobj", async (req, res) => {
+  try {
+    let { _id, port_name,quantity,month,year} = req.body;
+    if (!_id || !port_name || !quantity || !month || !year) {
+      return res.status(400).send({ msg: "Insufficien info" });
+    }
+
+    let getNodetoEdit = await Node.findById({_id});
+    let getNode = await Node.findOne({port_name});
+
+    if (!getNode) {
+      return res.status(400).json({ msg: "enter valid port name to be updated" });
+    }
+
+        getNodetoEdit.recieved_item.unshift({
+        recivedport_id : getNode._id,
+        quantity ,
+        month ,
+        year
+        }); 
+
+    await getNodetoEdit.save();
+    res.json(getNodetoEdit);
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
 });
 
 router.get('/nodesList', function(req, res) {
   Node.find({}, function(err, nodes) {
-    var userMap = {};
-
-    nodes.forEach(function(user) {
-      userMap[user.port_name] = user._id;
-    });
-
-    res.send(userMap);  
+    res.send(nodes);  
   });
 });
 
+router.post('/nodeone', async (req, res) => {
+  console.log(req.body);
+  const {_id}= req.body;
+  const node = await Node.findById({_id});
+  res.send(node);
+});
 
 
 module.exports = router;

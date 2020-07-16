@@ -29,6 +29,14 @@
   float: left;
   background-color: whitesmoke;
 } 
+.float-child3 {
+  width: 90%;
+  margin-block-start :1%;
+  margin-inline-start: 5%;
+  height:98vh;
+  float: left;
+  background-color: rgb(172, 153, 105);
+} 
 .float-child2 {
   width: 25%;
   height : 100vh;
@@ -60,7 +68,12 @@
     }   
   }
 
+  /*
+
+mongodb+srv://blurry:KGKhw20qjSc5QZ82@cluster0-fiwnf.mongodb.net/bruh?retryWrites=true&w=majority
+
+
+
+   */
 
       
-       
-       

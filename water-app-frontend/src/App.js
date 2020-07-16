@@ -59,6 +59,7 @@ function App() {
     <Route exact path="/createnode" component={Createnode} />
     <Route exact path="/updatenode" component={Updatenode} />
     <Route  path="/listing" component={Listing} />
+    <Route  path="/listing/:_id" component={Listing} />
     </Switch>
     </div>
     </userContext.Provider>
