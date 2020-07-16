@@ -1,0 +1,66 @@
+.header {
+    display : inline-block;
+    background-color : #424242 ;
+    width  :100vw;
+    position: relative;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.block{
+    display: inline-block;
+    padding-left: 40vw;
+    padding-top: 20vh;
+    
+}
+
+.block > h1{
+    color: #212121 ;
+}
+
+.float-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.float-child1 {
+  width: 75%;
+  height: 100vh;
+  float: left;
+  background-color: whitesmoke;
+} 
+.float-child2 {
+  width: 25%;
+  height : 100vh;
+  float: left;
+  background-color:#424242;
+  overflow: scroll;
+}   
+
+@media screen and (max-width: 670px){
+    .block{
+      padding-left: 8vw;
+    }
+    .block > h1{
+        text-align: center;
+         color: #212121 ;
+     }
+
+     .float-child1 {
+      width: 60%;
+      height: 100vh;
+      float: left;
+      background-color:pink;
+    } 
+    .float-child2 {
+      width: 40%;
+      height : 100vh;
+      float: left;
+      background-color: blue;
+    }   
+  }
+
+
+      
+       
+       
