@@ -7,7 +7,7 @@ router.post("/register", async (req,res) => {
         let { customer_name ,customer_email, port_name, recieving_list,distribution_list} = req.body;
 
         if(!customer_name || !customer_email || !port_name){
-            return res.status(400).send({ msg : "Please fill required data"});
+            return res.status(400).send({ msg : "All fields are mandatory"});
         }
     
         const exsistingEmail = await Node.findOne({customer_email});
@@ -119,20 +119,24 @@ router.put("/update/supplyobj", async (req, res) => {
     let getNodetoEdit = await Node.findById({_id});
     let getNode = await Node.findOne({port_name});
 
+
     if (!getNode) {
       return res.status(400).json({ msg: "enter valid port name to be updated" });
     }
-
-        getNodetoEdit.supplied_item.unshift({
-        suppliedport_id : getNode._id,
+   console.log(port_name);
+   getNodetoEdit.supplied_item.unshift({
+        suppliedport_name : port_name,
         quantity ,
         month ,
         year
-        }); 
-
-    await getNodetoEdit.save();
-    res.json(getNodetoEdit);
+   }); 
+     
+     await getNodetoEdit.save();
+     res.json(getNodetoEdit);
+    
+    
   } catch (err) {
+    console.log(err.message);
     return res.status(500).json({ error: err.message });
   }
 });
@@ -147,12 +151,12 @@ router.put("/update/recievedobj", async (req, res) => {
     let getNodetoEdit = await Node.findById({_id});
     let getNode = await Node.findOne({port_name});
 
-    if (!getNode) {
+    if (!getNode || !getNodetoEdit) {
       return res.status(400).json({ msg: "enter valid port name to be updated" });
     }
 
         getNodetoEdit.recieved_item.unshift({
-        recivedport_id : getNode._id,
+        recivedport_name : port_name,
         quantity ,
         month ,
         year
@@ -161,6 +165,7 @@ router.put("/update/recievedobj", async (req, res) => {
     await getNodetoEdit.save();
     res.json(getNodetoEdit);
   } catch (err) {
+    console.log(err.message);
     return res.status(500).json({ error: err.message });
   }
 });

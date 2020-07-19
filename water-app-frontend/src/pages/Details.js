@@ -1,0 +1,57 @@
+import React,{useState, useEffect} from 'react';
+import Axios from 'axios';
+import Table from '../component/Table';
+
+export default function Details({match}) {
+
+    const[arr,SetArr] = useState();
+    const[sport,SetSport] = useState();
+ //   console.log(match.params.id);
+    useEffect(() => {
+        let i = {
+          _id: match.params.id
+        };
+        Axios.post("http://localhost:5000/nodes/nodeone", i)
+          .then(res => {
+            if (res.status !== 200) {
+              console.log(res.msg);
+              return;
+            }
+          SetArr(res.data.recieved_item); 
+          SetSport(res.data.port_name) ;
+          })
+          .catch(err => console.error(err));
+      }, [match]);
+ //     console.log(arr);
+  return (
+    <div className="float">
+    <table className="responsive-table centered highlight striped">
+        <thead>
+          <tr>
+              <th>Supply Port</th>
+              <th>Recieving Port</th>
+              <th>Amount</th>
+              <th>Month</th>
+              <th>Year</th>
+
+          </tr>
+        </thead>
+
+        <tbody>
+        {
+            arr ? (arr.map( (v,i) => {
+              return  <Table data={{
+                  sport : sport,
+                  rport: v.recivedport_name,
+                  amount : v.quantity,
+                  month : v.month,
+                  year : v.year
+              }} />
+            })) : (null)
+        }
+        </tbody>
+      </table>
+            
+    </div>
+  )
+}

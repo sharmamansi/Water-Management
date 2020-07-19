@@ -1,21 +1,37 @@
 .header {
-    display : inline-block;
-    background-color : #424242 ;
-    width  :100vw;
-    position: relative;
-    padding-left: 40px;
-    padding-right: 40px;
+  display: inline-block;
+  background-color: #424242;
+  width: 100vw;
+  position: relative;
+  padding-left: 40px;
+  padding-right: 40px;
 }
 
-.block{
-    display: inline-block;
-    padding-left: 40vw;
-    padding-top: 20vh;
-    
+.mainblock{
+  display : block;
+  background:  linear-gradient(#DBD5A4,#424242);;
+  width: 100%;
+  position: fixed;
+  height: 100%;
+ 
 }
 
-.block > h1{
-    color: #212121 ;
+.block {
+  display: inline-block;
+  margin-inline-start: 40%;
+  margin-block-start: 20vh;
+  padding-right:20px;
+  padding-left:20px;
+  text-align : center;
+  border : solid 1px #424242 ;
+  background : whitesmoke;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px 5px #424242 ;
+
+}
+
+.block > h1 {
+  color: #212121;
 }
 
 .float-container {
@@ -27,53 +43,141 @@
   width: 75%;
   height: 100vh;
   float: left;
-  background-color: whitesmoke;
-} 
+  background-color: white;
+}
+.float {
+  width: 75%;
+  height: 100vh;
+  float: left;
+  background-color: white;
+  overflow: scroll;
+}
 .float-child3 {
   width: 90%;
-  margin-block-start :1%;
+  height: 30vh;
   margin-inline-start: 5%;
-  height:98vh;
+  margin-block-start: 5%;
   float: left;
-  background-color: rgb(172, 153, 105);
-} 
+  background-color: transparent;
+  color: #424242;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px 40px;
+  overflow: hidden;
+}
 .float-child2 {
   width: 25%;
-  height : 100vh;
+  height: 100vh;
   float: left;
-  background-color:#424242;
+  background-color: #424242;
   overflow: scroll;
-}   
+}
+.float-child4 {
+  width: 44%;
+  height: 50vh;
+  margin-inline-start: 4%;
+  margin-block-start: 5%;
+  float: left;
+  background-color: transparent;
+  color: #424242;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px 40px;
+  overflow: scroll;
+}
 
-@media screen and (max-width: 670px){
-    .block{
-      padding-left: 8vw;
-    }
-    .block > h1{
-        text-align: center;
-         color: #212121 ;
-     }
+.float-child3 h1 {
+  margin-top: 2%;
+  font-size: 2rem;
+}
+.float-child3 h2 {
+  font-size: 1.5rem;
+}
+.float-child4 h1 {
+  margin-top: 2%;
+  font-size: 2rem;
+}
+.float-child4 h2 {
+  font-size: 1.5rem;
+}
 
-     .float-child1 {
-      width: 60%;
-      height: 100vh;
-      float: left;
-      background-color:pink;
-    } 
-    .float-child2 {
-      width: 40%;
-      height : 100vh;
-      float: left;
-      background-color: blue;
-    }   
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 15px transparent;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(233, 233, 233, 0.397);
+  border-radius: 50%;
+}
+::-webkit-scrollbar {
+  width: 5px;
+}
+::selection {
+  color: black;
+  background: white;
+}
+
+.renform {
+  display: flexbox;
+  background: transparent;
+  position: fixed;
+  width: 100vw;
+  height: 10vh;
+  float: left;
+  padding-top: 10px;
+}
+
+.rendata {
+  display: flexbox;
+  position: fixed;
+  background: transparent;
+  width: 100vw;
+  height: 90vh;
+  margin-block-start: 10vh;
+  overflow: scroll;
+}
+
+.errorblock {
+  display : flex;
+  width : 100%;
+  height : 8vh;
+  padding-top: 15px;
+  border : solid red 1px;
+  background: transparent   ;
+  color: red;
+  float: left;
+}
+
+@media screen and (max-width: 670px) {
+  .block {
+    padding-left: 8vw;
+  }
+  .block > h1 {
+    text-align: center;
+    color: #212121;
   }
 
-  /*
+  .float-child1 {
+    width: 60%;
+    height: 100vh;
+    float: left;
+    background-color: pink;
+  }
+  .float-child2 {
+    width: 40%;
+    height: 100vh;
+    float: left;
+    background-color: blue;
+  }
+}
+
+/*
 
 mongodb+srv://blurry:KGKhw20qjSc5QZ82@cluster0-fiwnf.mongodb.net/bruh?retryWrites=true&w=majority
 
 
 
    */
-
-      

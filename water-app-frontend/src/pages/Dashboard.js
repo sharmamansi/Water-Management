@@ -69,7 +69,7 @@ export default function Dashboard() {
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quis aliquam orci. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
            </div>
            <div class="card-action">
-            <a href="/">More details</a>
+            <a href="/analysis">More details</a>
           </div>
          </div>
        </div>

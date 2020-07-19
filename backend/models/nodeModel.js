@@ -33,9 +33,8 @@ const nodeSchema = new mongoose.Schema({
     ],
     recieved_item : [
         {
-            recivedport_id : {
-                type : String,
-                required : true
+            recivedport_name : {
+                type : String
             },
             quantity : {
                 type :String,
@@ -53,9 +52,8 @@ const nodeSchema = new mongoose.Schema({
     ],
     supplied_item : [
         {
-            suppliedport_id : {
-                type : String,
-                required : true
+            suppliedport_name : {
+                type : String
             },
             quantity : {
                 type :String,

@@ -11,6 +11,9 @@ import Listing from './pages/Listing';
 import { Switch , Route } from 'react-router-dom';
 import userContext from './context/userContext';
 import Axios from "axios";
+import Details from './pages/Details';
+import DetailSup from './pages/DetailSup';
+import NormalAnalysis from './analysis/NormalAnalysis';
 
 
 function App() {
@@ -52,14 +55,16 @@ function App() {
     <div>
     <Header />
     <Switch>
-    <Route exact path="/" component={Home} />
+    <Route exact path="/" component={Login} />
     <Route exact path="/login" component={Login} />
     <Route exact path="/register" component={Register} />
     <Route exact path="/dashboard" component={Dashboard} />
     <Route exact path="/createnode" component={Createnode} />
     <Route exact path="/updatenode" component={Updatenode} />
     <Route  path="/listing" component={Listing} />
-    <Route  path="/listing/:_id" component={Listing} />
+    <Route  path="/:id/detail" component={Details} />
+    <Route  path="/:id/detailsup" component={DetailSup} />
+    <Route  path="/analysis" component = {NormalAnalysis} />
     </Switch>
     </div>
     </userContext.Provider>
