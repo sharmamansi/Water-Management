@@ -16,7 +16,7 @@ export default function Register() {
     setDisable(true);
     const newUser = { email, username, password, password2 };
     try {
-      await Axios.post("http://localhost:5000/users/register", newUser);
+      await Axios.post("/users/register", newUser);
       setRedirect(true);
       setDisable(false);
     } catch (err) {

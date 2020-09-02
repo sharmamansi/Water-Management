@@ -11,21 +11,21 @@ export default function Details({match}) {
         let i = {
           _id: match.params.id
         };
-        Axios.post("http://localhost:5000/nodes/nodeone", i)
+        Axios.post("/nodes/nodeone", i)
           .then(res => {
             if (res.status !== 200) {
               console.log(res.msg);
               return;
             }
-          SetArr(res.data.supplied_item); 
+          SetArr(res.data.recieved_item); 
           SetSport(res.data.port_name) ;
           })
           .catch(err => console.error(err));
       }, [match]);
  //     console.log(arr);
   return (
-    <div>
-    <table>
+    <div className="">
+    <table className=" centered highlight striped">
         <thead>
           <tr>
               <th>Supply Port</th>
@@ -41,8 +41,8 @@ export default function Details({match}) {
         {
             arr ? (arr.map( (v,i) => {
               return  <Table data={{
-                  rport : sport,
-                  sport: v.suppliedport_name,
+                  sport : sport,
+                  rport: v.recivedport_name,
                   amount : v.quantity,
                   month : v.month,
                   year : v.year

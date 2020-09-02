@@ -21,7 +21,7 @@ export default function Login() {
 
     try{
       const credential = {email,password};
-      const getUser = await Axios.post("http://localhost:5000/users/login",credential);
+      const getUser = await Axios.post("/users/login",credential);
       if(getUser){
         setUserData({
           token : getUser.data.token,

@@ -14,7 +14,7 @@ export default function Showdata(props) {
     let i = {
       _id: props.props
     };
-    Axios.post("http://localhost:5000/nodes/nodeone", i)
+    Axios.post("/nodes/nodeone", i)
       .then(res => {
         if (res.status !== 200) {
           console.log(res.msg);

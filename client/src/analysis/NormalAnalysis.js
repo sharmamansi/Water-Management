@@ -10,7 +10,7 @@ export default function NormalAnalysis() {
   const [finalarr, setFinalarr] = useState();
 
   useEffect(() => {
-    Axios.get("http://localhost:5000/nodes/nodesList")
+    Axios.get("/nodes/nodesList")
       .then(res => {
         if (res.status !== 200) {
           console.log(res.msg);

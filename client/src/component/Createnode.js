@@ -22,7 +22,7 @@ export default function Createnode() {
         port_name: username
       };
       const createnode = await Axios.post(
-        "http://localhost:5000/nodes/register",
+        "/nodes/register",
         cred
       );
       if (createnode) {

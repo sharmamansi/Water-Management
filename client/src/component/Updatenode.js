@@ -23,7 +23,7 @@ export default function Updatenode() {
   const [distributionList, setDistributionList] = useState([]);
 
   useEffect(() => {
-    Axios.get("http://localhost:5000/nodes/nodesList").then((res) => {
+    Axios.get("/nodes/nodesList").then((res) => {
       console.log(res.data);
       setNodes(res.data);
     });
@@ -75,7 +75,7 @@ export default function Updatenode() {
           recievinglist,
         };
         var hasrecievingl = await Axios.put(
-          "http://localhost:5000/nodes/update/recievepoints",
+          "/nodes/update/recievepoints",
           cred
         );
         if (!hasrecievingl) {
@@ -90,7 +90,7 @@ export default function Updatenode() {
           distributionlist,
         };
         var hassupplyingl = await Axios.put(
-          "http://localhost:5000/nodes/update/supplypoints",
+          "/nodes/update/supplypoints",
           cred
         );
         if (!hassupplyingl) {
@@ -107,7 +107,7 @@ export default function Updatenode() {
           year: syear,
         };
         var hassupplyobj = await Axios.put(
-          "http://localhost:5000/nodes/update/supplyobj",
+          "/nodes/update/supplyobj",
           cred
         );
         if (!hassupplyobj) {
@@ -124,7 +124,7 @@ export default function Updatenode() {
           year: ryear,
         };
         var hasrecieveobj = await Axios.put(
-          "http://localhost:5000/nodes/update/recievedobj",
+          "/nodes/update/recievedobj",
           cred
         );
         console.log(hasrecieveobj);
