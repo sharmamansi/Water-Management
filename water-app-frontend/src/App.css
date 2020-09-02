@@ -1,6 +1,6 @@
 .header {
   display: inline-block;
-  background-color: #424242;
+  background-color :  rgb(39, 34, 34) ;
   width: 100vw;
   position: relative;
   padding-left: 40px;
@@ -8,25 +8,26 @@
 }
 
 .mainblock{
-  display : block;
-  background:  linear-gradient(#DBD5A4,#424242);;
+  background-color: rgb(44, 43, 43);
   width: 100%;
-  position: fixed;
-  height: 100%;
+  overflow: scroll;
+  height: 100vh;
+  display: flex;
+  justify-content: space-around;
  
 }
 
 .block {
   display: inline-block;
-  margin-inline-start: 40%;
-  margin-block-start: 20vh;
+  margin-block-start: 10%;
+  height: 65vh;
   padding-right:20px;
   padding-left:20px;
   text-align : center;
   border : solid 1px #424242 ;
-  background : whitesmoke;
+  background : white;
   border-radius: 10px;
-  box-shadow: 5px 5px 5px 5px #424242 ;
+  box-shadow: 1px 1px 1px 1px #424242 ;
 
 }
 
@@ -34,16 +35,12 @@
   color: #212121;
 }
 
-.float-container {
-  display: flex;
-  justify-content: space-around;
-}
-
 .float-child1 {
   width: 75%;
   height: 100vh;
   float: left;
-  background-color: white;
+  background-color:  rgb(39, 34, 34);
+  color: white;
 }
 .float {
   width: 75%;
@@ -51,6 +48,7 @@
   float: left;
   background-color: white;
   overflow: scroll;
+  color:white;
 }
 .float-child3 {
   width: 90%;
@@ -59,9 +57,9 @@
   margin-block-start: 5%;
   float: left;
   background-color: transparent;
-  color: #424242;
+  color: white;
   text-align: center;
-  border: 1px solid #ccc;
+  
   border-radius: 10px;
   padding: 20px 40px;
   overflow: hidden;
@@ -70,21 +68,24 @@
   width: 25%;
   height: 100vh;
   float: left;
-  background-color: #424242;
+  background-color:  rgb(39, 34, 34);
   overflow: scroll;
+  border: 1px solid ;
+  box-shadow: 5px 1px 1px 1px #424242 ;
 }
 .float-child4 {
   width: 44%;
   height: 50vh;
+  color: white;
   margin-inline-start: 4%;
   margin-block-start: 5%;
   float: left;
   background-color: transparent;
   color: #424242;
   text-align: center;
-  border: 1px solid #ccc;
+  border: 1px solid #424242;
   border-radius: 10px;
-  padding: 20px 40px;
+  padding: 20px 10px;
   overflow: scroll;
 }
 
@@ -122,22 +123,30 @@
 
 .renform {
   display: flexbox;
-  background: transparent;
+  background-color: white;
   position: fixed;
   width: 100vw;
-  height: 10vh;
+  height: 100vh;
   float: left;
   padding-top: 10px;
+  border : 2px solid black;
+  padding-left: 20%;
+  padding-top: 30px;
+  padding-right: 20%;
 }
 
 .rendata {
   display: flexbox;
   position: fixed;
-  background: transparent;
-  width: 100vw;
-  height: 90vh;
-  margin-block-start: 10vh;
+  background-color: #212121;
+  color: white;
+  width: 60vw;
+  margin-block-start: 20vh;
   overflow: scroll;
+  border: 1px solid black;
+  margin-inline-start: 20vw;
+  margin-inline-end: 20vw;
+  max-height: 70vh;
 }
 
 .errorblock {
@@ -150,6 +159,25 @@
   color: red;
   float: left;
 }
+
+.cardforlist{
+ display: flex;
+ width : 80%;
+ background : white;
+}
+
+.dashbox{
+  display: block;
+  margin-inline-start: 30%;
+  margin-block-start: 2%;
+  margin-inline-end: 30%;
+}
+
+#floatbtn{
+  margin-block-end: 45%;
+}
+
+
 
 @media screen and (max-width: 670px) {
   .block {
@@ -172,12 +200,26 @@
     float: left;
     background-color: blue;
   }
+
+ 
 }
+
+@media screen and (max-width: 1000px){
+  .dashbox{
+    display: block;
+    margin-inline-start: 10%;
+    margin-inline-end: 10%;
+  }
+} 
 
 /*
 
 mongodb+srv://blurry:KGKhw20qjSc5QZ82@cluster0-fiwnf.mongodb.net/bruh?retryWrites=true&w=majority
-
+<div className="card transparent">
+      <span className="card-title white-text"></span>
+   
+      
+      </div>
 
 
    */

@@ -32,11 +32,10 @@ export default function Listing(props) {
   }, []);
 
   return (
-    <div className="float-container">
+    <div className="mainblock">
       <div className="float-child1">
         {wantData ? <Showdata props={id} /> : null}
       </div>
-
       <div className="float-child2">
         {loading
           ? null

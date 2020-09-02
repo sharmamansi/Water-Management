@@ -35,7 +35,7 @@ export default function Showdata(props) {
   //   console.log(recievinglist);
   return (
     <>
-      <div className="float-child3">
+    <div className="float-child3">
         <h1>Registered Port Name -{portname}</h1>
         <h2>ID - {props.props}</h2>
         <h2>Customer Name - {customername}</h2>
@@ -43,9 +43,9 @@ export default function Showdata(props) {
       </div>
 
       <div className="float-child4">
-        <h1>Recieving Port List</h1>
+        <h1 className="white-text">Recieving Port List</h1>
         <div>
-          <table className="responsive-table centered highlight striped">
+          <table className="centered highlight white-text">
             <thead>
               <tr>
                 <th>Port Id</th>
@@ -71,14 +71,14 @@ export default function Showdata(props) {
         </div>
 
         <Link className="btn" to={`/${props.props}/detail`}>
-          Get Full recievied water details
+          Details
         </Link>
       </div>
       <div className="float-child4">
-        <h1>Supplying Port List</h1>
+        <h1 className="white-text">Supplying Port List</h1>
 
         <div>
-          <table className="responsive-table centered highlight">
+          <table className="centered highlight white-text">
             <thead>
               <tr>
                 <th>Port Id</th>
@@ -104,7 +104,7 @@ export default function Showdata(props) {
         </div>
 
         <Link className="btn" to={`/${props.props}/detailsup`}>
-          Get Full supplied water details
+          Details
         </Link>
       </div>
     </>

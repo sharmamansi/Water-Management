@@ -5,13 +5,16 @@ export default function Card({ key, props, params }) {
   return (
     <div id="ren">
       <div class="card transparent">
-        <div class="card-content">
-          <span class="card-title white-text">{props.name}</span>
+        <div class="card-content white-text">
+          <span class="card-title ">{props.name}</span>
           <p>{props.id}</p>
         </div>
-        <div class="card-action">
-          <Link to={`/listing/${props.id}`}>More details</Link>
-        </div>
+        <a
+          className="btn-floating halfway-fab waves-effect waves-light red"
+          href={`/listing/${props.id}`}
+        >
+          <i class="material-icons">add</i>
+        </a>
       </div>
     </div>
   );

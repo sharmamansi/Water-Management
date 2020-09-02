@@ -24,8 +24,8 @@ export default function Details({match}) {
       }, [match]);
  //     console.log(arr);
   return (
-    <div className="float">
-    <table className="responsive-table centered highlight striped">
+    <div className="">
+    <table className=" centered highlight striped">
         <thead>
           <tr>
               <th>Supply Port</th>

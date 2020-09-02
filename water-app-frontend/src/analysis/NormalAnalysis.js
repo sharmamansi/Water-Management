@@ -111,7 +111,7 @@ export default function NormalAnalysis() {
                 arrdata.push({
                   supplyport: list[i],
                   recieveport: v.port_name,
-                  lossPercentage: loss
+                  lossPercentage: loss.toFixed(2)
                 });
               }
             });
@@ -129,7 +129,8 @@ export default function NormalAnalysis() {
 
   return (
     <>
-      <div className="renform">
+  
+        <div className="renform">
         <div className="row">
           <form className="col s12">
             <div className="row">
@@ -137,7 +138,6 @@ export default function NormalAnalysis() {
                 <input
                   id="month"
                   type="text"
-                  className="validate"
                   onChange={e => setMonth(e.target.value)}
                 />
                 <label htmlFor="month">Month</label>
@@ -161,9 +161,11 @@ export default function NormalAnalysis() {
         </div>
       </div>
 
+    
+    
       <div className="rendata">
         {finalarr ? (
-          <table className="striped highlight centered">
+          <table className=" centered">
             <thead>
               <tr>
                 <th>Supply Port</th>
@@ -178,7 +180,7 @@ export default function NormalAnalysis() {
                   return <Rowforanalysis props={v} />;
                 })
               ) : (
-                <div>No data</div>
+                null
               )}
             </tbody>
           </table>

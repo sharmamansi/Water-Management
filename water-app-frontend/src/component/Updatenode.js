@@ -132,7 +132,7 @@ export default function Updatenode() {
   
   return (
     <>
-      <section className="container">
+      <section className="container ">
         <h1 className="center">Update Node</h1>
         {error ? <ErrorHandle data={error} /> : null}
         <div className="row">
