@@ -178,11 +178,15 @@ export default function Updatenode() {
                     setId(e.target.value);
                   }}
                 >
-                  <option value="" disabled selected>
+                  <option value="" selected>
                     Choose a node
                   </option>
                   {nodes.map((v, i) => {
-                    return <option value={v._id}>{v.port_name}</option>;
+                    return (
+                      <option value={v._id} key={i}>
+                        {v.port_name}
+                      </option>
+                    );
                   })}
                 </select>
               </div>
@@ -221,13 +225,21 @@ export default function Updatenode() {
                 <label>Select a Distribution list</label>
                 <select
                   class="browser-default"
-                  onChange={(e) => setRportname(e.target.value)}
+                  onChange={(e) => {
+                    console.log(e.target.value);
+                    console.log(rportname);
+                    setSportname(e.target.value);
+                  }}
                 >
-                  <option value="" disabled selected>
+                  <option value="" selected>
                     Choose a distribution list
                   </option>
                   {distributionList.map((v, i) => {
-                    return <option value={v._id}>{v.port_name}</option>;
+                    return (
+                      <option value={v.port_name} key={i}>
+                        {v.port_name}
+                      </option>
+                    );
                   })}
                 </select>
               </div>
@@ -273,11 +285,15 @@ export default function Updatenode() {
                   class="browser-default"
                   onChange={(e) => setRportname(e.target.value)}
                 >
-                  <option value="" disabled selected>
+                  <option value="" selected>
                     Choose a recieving node
                   </option>
                   {recievingNodes.map((v, i) => {
-                    return <option value={v._id}>{v.port_name}</option>;
+                    return (
+                      <option value={v.port_name} key={i}>
+                        {v.port_name}
+                      </option>
+                    );
                   })}
                 </select>
               </div>
